@@ -22,7 +22,7 @@ def init_central_body():
 cb = init_central_body()
 
 
-def get_orbital_elements(sat_name="iss"):
+def get_orbital_elements(sat_name="gps"):
     a = cb.radius + (iss['perigee height'] + iss['apogee height'])/2
     eles = [a, iss['e'], iss['i'], iss['raan'], iss['arg_perigee'], iss['ma@epoch'], iss['Epoch']]
     period = (24.0*3600.0)/iss['revs/day']
@@ -41,10 +41,10 @@ def get_tle_data(path):
 Blender simulation data
 '''
 # fps of simulation
-sim_fps = 24
+sim_fps = 30
 
 # period of earth rotation in sim in seconds
-sim_earth_period = 120.0
+sim_earth_period = 24
 
 # real time to sim time conversion factor
 real2sim = sim_earth_period/(24.0 * 3600.0)
@@ -53,7 +53,7 @@ real2sim = sim_earth_period/(24.0 * 3600.0)
 if __name__ == "__main__":
     cb = init_central_body()
     sphere_coords = cb.plot_attributes()
-    tle_data = get_tle_data("data/starlink.txt")
+    tle_data = get_tle_data("data/weather.txt")
 
     # list to store satellite coordinates
     coords = [];
@@ -85,8 +85,8 @@ print("....Creating final_coords list for writing location data to Blender's Par
 
 
 currentDirectory = os.getcwd()
-particleCachePath = os.path.normpath(currentDirectory + os.sep + os.pardir)+"/blendcache_earth1."
-cache = particlecache.PointCache(particleCachePath, 0)
+particleCachePath = os.path.normpath(currentDirectory + os.sep + os.pardir)+"/blendcache_EyesonEarthv2"
+cache = particlecache.PointCache(particleCachePath, 10)
 
 
 for cache_file in cache.files:

@@ -160,14 +160,14 @@ _type_map={
 }
 
 
-def cache_file_list(directory, index=0):
+def cache_file_list(directory, index=10):
     """Cache frame files in a directory, sorted by frame
     """
 
     return sorted(cache_files(directory, index), key=lambda item: item[0])
 
 
-def cache_files(directory, index=0):
+def cache_files(directory, index=10):
     """Cache frame files in a directory
     """
 
